@@ -26,13 +26,13 @@ def input_students
 end 
 
 def print_header
-  puts "The students of Villain Academy"
-  puts "------------"
+  puts "The students of Villain Academy".center(100)
+  puts "------------".center(100)
 end
 
 def print(students)
   students.each { |student|
-      puts "#{student[:name]} (#{student[:cohort]} cohort). Height - #{student[:height]}cm. Country of birth - #{student[:birth_country]} "
+      puts "#{student[:name]} (#{student[:cohort]} cohort). Height - #{student[:height]}cm. Country of birth - #{student[:birth_country]}".center(100)
   }
 end
 
