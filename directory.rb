@@ -24,7 +24,9 @@ end
 
 def print(students)
   students.each { |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    if student[:name][0] == "V"
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
   }
 end
 
