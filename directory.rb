@@ -7,8 +7,16 @@ def input_students
   name = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
+    
+    # add the students height
+    puts "Enter the students height in CM"
+    height = gets.chomp
+    # add the students country of birth
+    puts "Enter the students country of birth"
+    birth_country = gets.chomp
     # add the student hash to the array
-    students << {name: name, cohort: :november}
+    students << {name: name, cohort: :november, height: height, birth_country: birth_country}
+    # show the student count
     puts "Now we have #{students.count} students"
     #get another name from the user
     name = gets.chomp
@@ -23,11 +31,9 @@ def print_header
 end
 
 def print(students)
-  accumulator = 0
-  while accumulator < students.count
-    puts "#{students[accumulator][:name]} (#{students[accumulator][:cohort]} cohort)"
-    accumulator += 1
-  end
+  students.each { |student|
+      puts "#{student[:name]} (#{student[:cohort]} cohort). Height - #{student[:height]}cm. Country of birth - #{student[:birth_country]} "
+  }
 end
 
 def print_footer(students)
