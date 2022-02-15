@@ -23,11 +23,11 @@ def print_header
 end
 
 def print(students)
-  students.each { |student|
-    if student[:name][0] == "V"
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    end
-  }
+  accumulator = 0
+  while accumulator < students.count
+    puts "#{students[accumulator][:name]} (#{students[accumulator][:cohort]} cohort)"
+    accumulator += 1
+  end
 end
 
 def print_footer(students)
