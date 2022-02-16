@@ -60,6 +60,33 @@ end
 
 def print_footer(students)
   puts "Overall, we have #{students.count} great students".center(100)
+  puts "Would you like to view the students by their respective cohorts?".center(100)
+  choice = gets.chomp.downcase
+  if choice == "yes" || "y"
+    print_by_cohorts(students)
+  else
+    puts "--------------".center(100)
+    puts "Thank you for using the student directory".center(100)
+    puts "--------------".center(100)
+  end
+end
+
+def print_by_cohorts(students)
+  # create an empty hash
+  grouped_students = {}
+  # iterate through our students to store their na
+  students.each { |student|
+    if grouped_students[student[:cohort]] == nil
+      grouped_students[student[:cohort]] = []
+    end
+    grouped_students[student[:cohort]].push(student[:name])
+  }
+  grouped_students.each { |key, value|
+    puts key
+    value.each { |i|
+      puts i
+    }
+  }
 end
 
 #call the methods
