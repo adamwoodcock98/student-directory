@@ -15,15 +15,27 @@ def input_students
   end
 end 
 
+def save_students
+  # open the file for writing
+  file = File.open("students.csv", "w")
+  #iterate over the array of students
+  @students.each do |student|
+    student_data = [student[:name], student[:cohort]]
+    csv_line = student_data.join(",")
+    file.puts csv_line
+  end
+  file.close
+end
+
 def print_header
   puts "The students of Villain Academy"
   puts "------------"
 end
 
 def print_students_list
-  @students.each { |student|
+  @students.each do |student|
     puts "#{student[:name]} (#{student[:cohort]} cohort)"
-  }
+  end
 end
 
 def print_footer
@@ -34,6 +46,7 @@ def print_menu
   # 1. Print the menu and ask the user what to do
   puts "1. Input the students"
   puts "2. Show the students"
+  puts "3. Save the list to students.csv"
   puts "9. Exit"
 end
 
@@ -52,6 +65,8 @@ def process(selection)
     input_students
   when "2"
     show_students
+  when "3"
+    save_students
   when "9"
     exit # the program will terminate
   else
