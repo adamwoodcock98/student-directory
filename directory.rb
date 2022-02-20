@@ -1,17 +1,18 @@
 @students = []
 
+def update_student_array(name, cohort)
+  @students << {name: name, cohort: cohort.to_sym}
+end
+
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
-  # get the first name
-  name = STDIN.gets.chomp
-  # while the name is not empty, repeat this code
-  while !name.empty? do
-    # add the student hash to the array
-    @students << {name: name, cohort: :november}
+  name = STDIN.gets.chomp # get the first name
+  while !name.empty? do # while the name is not empty, repeat this code
+    update_student_array(name, "november") # add the student hash to the array
     puts "Now we have #{@students.count} students"
-    #get another name from the user
-    name = STDIN.gets.chomp
+    name = STDIN.gets.chomp # get another name from the user
   end
 end 
 
@@ -36,16 +37,22 @@ def load_students(filename = "students.csv")
   file.close
 end
 
-def try_load_students
-  filename = ARGV.first # first argument from the command line
-  return if filename.nil? # get out of the method if it isn't given
-  if File.exists?(filename) # if it exists
-    load_students(filename)
-    puts "Loaded #{@students.count} students from #{filename}"
+def try_load_file(file)
+  if File.exists?(file) # if it exists
+    load_students(file)
+    puts "Loaded #{@students.count} students from #{file}"
   else # if it doesn't
-    puts "Sorry, #{filename} doesn't exist"
+    puts "Sorry, #{file} doesn't exist"
     exit #quit the program
   end
+end
+
+def try_load_students
+  filename = ARGV.first # first argument from the command line
+  if filename.nil?
+    filename = "students.csv"
+  end
+  try_load_file(filename)
 end
 
 
